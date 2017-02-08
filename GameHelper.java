@@ -1,3 +1,4 @@
+// HeadFirstJava 2e, pagina 112.
 import java.io.*;
 public class GameHelper 
 {
