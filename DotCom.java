@@ -1,6 +1,6 @@
 // HeadFirst java 2e.
 // Pagina 138
-import java.util.ArrayList;
+import java.util.ArrayList; 
 
 public class DotCom 
 {
