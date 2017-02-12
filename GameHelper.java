@@ -1,7 +1,16 @@
-// HeadFirstJava 2e, pagina 112.
+// HeadFirstJava 2e, pagin;a 152.
 import java.io.*;
+import java.util.*;
+
 public class GameHelper 
 {
+	private static final String alphabet = "abcdefg";
+	private int gridLength = 7;
+	private int gridSize = 49;
+	private int[] grid = new int[gridSize];
+	private int comCount = 0;
+	
+	
 	public String getUserInput(String prompt) 
 	{
 		String inputLine = null;
@@ -17,7 +26,13 @@ public class GameHelper
 		{
 			System.out.println("IOException: " + e);
 		}
-		return inputLine;
+		return inputLine.toLowerCase();
 	}
+	
+	public ArrayList<Sting> placeDotCom(int omSize)
+	{
+		ArrayList<String> alphaCells = new ArrayList<String>();
+	}
+	
 }
 //TEST
