@@ -32,61 +32,62 @@ public class GameHelper
 	public ArrayList<String> placeDotCom(int comSize)
 	{
 		ArrayList<String> alphaCells = new ArrayList<String>();
-		String [] alphacoords = new String [comSize];
-		String temp = null;
-		int [] coords = new int[comSize];
-		int attempts = 0;
-		boolean success = false;
-		int location = 0;
+		String [] alphacoords = new String [comSize];	// Holds 'f6'type coords
+		String temp = null;								// Temporary String for concat
+		int [] coords = new int[comSize];				// Current candidate coords
+		int attempts = 0;								// Current attempts counter
+		boolean success = false;						// Flag = found a good location?
+		int location = 0;								// current starting location
 		
-		comCount++;
-		int incr = 1;
-		if((comCount % 2) == 1)
+		comCount++;										// NTH dot com to place
+		int incr = 1;									// Set horizontal increment
+		if((comCount % 2) == 1)							// if odd dot com (place vertically)
 		{
-			incr = gridLength;
+			incr = gridLength;							// Set vertical increment
 		}
 		
-		while ( !success & attempts++ < 200)
+		while ( !success & attempts++ < 200)			// Main search loop (32)
 		{
-			location = (int)(Math.random() * gridSize);
+			location = (int)(Math.random() * gridSize);	// Get random starting point
 			System.out.print(" try " + location);
-			int x = 0;
-			success = true;
-			while (success && x < comSize)
+			int x = 0;									// NTH position in dotcom to place
+			success = true;								// assume success
+			while (success && x < comSize)				// Look for adjacent unused spots
 			{
-				if( grid[location] == 0 )
+				if( grid[location] == 0 )				// If not already used
 				{
-					coords[x++] = location;
-					location += incr;
-					if (location >= gridSize)
+					coords[x++] = location;				// Save location
+					location += incr;					// try 'next' adjacent
+					if (location >= gridSize)			// out of bounds - 'bottom'
 					{
-						success = false;
+						success = false;				// failure
 					}
-					if( x>0 && location % gridLength == 0)
+					if( x>0 && location % gridLength == 0) // Out of bounds - right edge
 					{ 
-						success = false;
+						success = false;				// failure
 					}
 				}
-				else
+				else									// Found already used location
 				{
 					System.out.print(" used " + location);
-					success = false;
+					success = false;					// Failure
 				}
-			}
-		}
+			}											
+		}												// End while
 		
-		int x = 0;
+		int x = 0;										// Turn location in to alpha coords
 		int row = 0;
 		int column = 0;
 		System.out.println("\n");
 		while(x < comSize)
 		{
-			grid[coords[x]] = 1;
-			row = (int) (coords[x] / gridLength);
-			column = coords[x] % gridLength;
-			temp = String.valueOf(alphabet.charAt(column));
+			grid[coords[x]] = 1;						// Mark master grid pts. as 'used'
+			row = (int) (coords[x] / gridLength);		// Get raw value
+			column = coords[x] % gridLength;			// Get numeric column value
+			temp = String.valueOf(alphabet.charAt(column));	// convert to alpha
 			alphaCells.add(temp.concat(Integer.toString(row)));
 			x++;
+			System.out.print(" coord "+x+" = " + alphaCells.get(x-1));
 		}
 		System.out.println("\n");
 		return alphaCells;
