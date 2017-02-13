@@ -49,7 +49,7 @@ public class DotComBust
 		numOfGuesses++;
 		String result = "Miss";
 		
-		for(DotCom dotComeToTest : dotComsList)
+		for(DotCom dotComToTest : dotComsList)
 		{
 			result = dotComToTest.checkYourself(userGuess);
 			
