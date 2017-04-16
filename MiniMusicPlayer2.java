@@ -59,6 +59,8 @@ public class MiniMusicPlayer2 implements ControllerEventListener
 		}
 	}//-- Close go() method.
 	
+	//-- The event handler method (from the controller-event listener interface).
+	//-- Each time we get the, we'll print "La" to the commandline.
 	public void controlChange(ShortMessage event)
 	{
 		System.out.println("la");
